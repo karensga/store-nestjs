@@ -21,7 +21,7 @@ const API_KEY = '12345634';
           username: user,
           password,
           database: dbName,
-          synchronize: true,
+          synchronize: false,
           autoLoadEntities: true,
         };
       },
