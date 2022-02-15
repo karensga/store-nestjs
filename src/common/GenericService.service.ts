@@ -21,7 +21,7 @@ export abstract class GenericService<ENTITY, ID, DTO, PARTIAL_DTO> {
     return this.genericRepository.merge(product, data);
   }
 
-  async delete(id: ID): Promise<boolean> {
+  async remove(id: ID): Promise<boolean> {
     const foundItem = await this.findOne(id);
     if (!foundItem) {
       throw new NotFoundException(`Product with id ${id} not found`);
