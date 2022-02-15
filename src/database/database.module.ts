@@ -21,6 +21,8 @@ const API_KEY = '12345634';
           username: user,
           password,
           database: dbName,
+          synchronize: true,
+          autoLoadEntities: true,
         };
       },
       inject: [config.KEY],
@@ -53,4 +55,4 @@ const API_KEY = '12345634';
   ],
   exports: ['PG', TypeOrmModule],
 })
-export class DatabaseModule {}
+export class DatabaseModule { }

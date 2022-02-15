@@ -23,8 +23,8 @@ export class ProductsController {
     return this.productsService.findOne(+productId);
   }
 
-  @Post()
+  /* @Post()
   create(@Body() payload: any) {
     return this.productsService.create(payload);
-  }
+  } */
 }
