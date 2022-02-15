@@ -4,14 +4,17 @@ import { Repository } from 'typeorm';
 
 import { Product } from '../entities/product.entity';
 import { CreateProductDto, UpdateProductDto } from '../dtos/product.dto';
+import { GenericService } from 'src/common/GenericService.service';
 
 @Injectable()
-export class ProductsService {
+export class ProductsService extends GenericService<Product, number, CreateProductDto, UpdateProductDto> {
   constructor(
-    @InjectRepository(Product) private productRepo: Repository<Product>,
-  ) {}
+    @InjectRepository(Product) private productRepository: Repository<Product>,
+  ) {
+    super(productRepository);
+  }
 
-  findAll() {
+  /* findAll() {
     return this.productRepo.find();
   }
 
@@ -21,7 +24,7 @@ export class ProductsService {
       throw new NotFoundException(`Product #${id} not found`);
     }
     return product;
-  }
+  } */
 
   /*create(payload: CreateProductDto) {
     console.log(payload);
