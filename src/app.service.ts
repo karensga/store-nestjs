@@ -7,7 +7,7 @@ export class AppService {
 
   getHello() {
     return new Promise((resolve, reject) => {
-      this.clientPg.query('SELECT * FROM tasks', (err, res) => {
+      this.clientPg.query('SELECT * FROM product', (err, res) => {
         if (err) {
           reject(err);
         }

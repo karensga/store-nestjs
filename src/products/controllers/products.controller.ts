@@ -8,7 +8,7 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { UpdateProductDto } from '../dtos/product.dto';
+import { CreateProductDto, UpdateProductDto } from '../dtos/product.dto';
 
 import { ProductsService } from '../services/products.service';
 
@@ -27,7 +27,7 @@ export class ProductsController {
   }
 
   @Post()
-  create(@Body() payload: any) {
+  create(@Body() payload: CreateProductDto) {
     return this.productsService.create(payload);
   }
 

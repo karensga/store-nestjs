@@ -3,10 +3,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
 } from 'typeorm';
 
+import { BasicEntity } from '../../base.entity';
+import { Brand } from './brand.entity';
+
 @Entity()
-export class Product {
+export class Product extends BasicEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,6 +29,6 @@ export class Product {
   @Column({ type: 'varchar' })
   image: string;
 
-  @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-  createAt: Date;
+  @ManyToOne(() => Brand, (brand) => brand.products)
+  brand: Brand;
 }
