@@ -1,13 +1,15 @@
 import {
   PrimaryGeneratedColumn,
   Column,
-  CreateDateColumn,
   Entity,
   ManyToOne,
+  ManyToMany,
+  JoinTable
 } from 'typeorm';
 
 import { BasicEntity } from '../../base.entity';
 import { Brand } from './brand.entity';
+import { Category } from './category.entity';
 
 @Entity()
 export class Product extends BasicEntity {
@@ -31,4 +33,8 @@ export class Product extends BasicEntity {
 
   @ManyToOne(() => Brand, (brand) => brand.products)
   brand: Brand;
+
+  @ManyToMany(() => Category, (category) => category.products)
+  @JoinTable()
+  categories: Category[];
 }
