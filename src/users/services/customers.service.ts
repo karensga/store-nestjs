@@ -1,7 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { Customer } from '../entities/customer.entity';
-import { CreateCustomerDto, UpdateCustomerDto } from '../dtos/customer.dto';
+import {
+  CreateCustomerDto,
+  UpdateCustomerDto,
+  FilterCustomerDto,
+} from '../dtos/customer.dto';
 import { GenericService } from 'src/common/GenericService.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -12,7 +16,14 @@ export class CustomersService {
     @InjectRepository(Customer) private customerRepo: Repository<Customer>,
   ) {}
 
-  findAll() {
+  findAll(params: FilterCustomerDto) {
+    if (params) {
+      const { limit, offset } = params;
+      return this.customerRepo.find({
+        take: limit,
+        skip: offset,
+      });
+    }
     return this.customerRepo.find();
   }
 
