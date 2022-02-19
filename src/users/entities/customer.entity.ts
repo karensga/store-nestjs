@@ -20,4 +20,5 @@ export class Customer extends BasicEntity {
 
   @OneToOne(() => User, (user) => user.customer, { nullable: true })
   user: User;
+  orders: any;
 }
