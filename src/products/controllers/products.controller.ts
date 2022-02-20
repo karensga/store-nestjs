@@ -8,6 +8,7 @@ import {
   Put,
   Delete,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import {
   CreateProductDto,
@@ -16,11 +17,18 @@ import {
 } from '../dtos/product.dto';
 
 import { ProductsService } from '../services/products.service';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { Public } from '../../auth/decorators/public.decorator';
+import { Roles } from '../../auth/decorators/roles.decorator';
+import { Role } from '../../auth/models/roles.model';
+import { RolesGuard } from '../../auth/guards/roles.guard';
 
+@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
+  @Public()
   @Get()
   getProducts(@Query() params: FilterProductDto) {
     return this.productsService.findAll(params);
@@ -32,6 +40,7 @@ export class ProductsController {
   }
 
   @Post()
+  @Roles(Role.ADMIN)
   create(@Body() payload: CreateProductDto) {
     return this.productsService.create(payload);
   }
