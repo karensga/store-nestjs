@@ -34,6 +34,7 @@ export class ProductsController {
     return this.productsService.findAll(params);
   }
 
+  @Public()
   @Get(':productId')
   getOne(@Param('productId', ParseIntPipe) productId: string) {
     return this.productsService.findOne(+productId);
@@ -46,11 +47,13 @@ export class ProductsController {
   }
 
   @Put(':id')
+  @Roles(Role.ADMIN)
   update(@Param('id') id: number, @Body() payload: UpdateProductDto) {
     return this.productsService.update(id, payload);
   }
 
   @Put(':id/category/:categoryId')
+  @Roles(Role.ADMIN)
   addCategoryToProduct(
     @Param('id') id: number,
     @Param('categoryId', ParseIntPipe) categoryId: number,
@@ -59,11 +62,13 @@ export class ProductsController {
   }
 
   @Delete(':id')
+  @Roles(Role.ADMIN)
   delete(@Param('id') id: number) {
     return this.productsService.remove(id);
   }
 
   @Delete(':id/category/:categoryId')
+  @Roles(Role.ADMIN)
   deleteCategory(
     @Param('id', ParseIntPipe) id: number,
     @Param('categoryId', ParseIntPipe) categoryId: number,
