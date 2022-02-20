@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { Brand } from '../entities/brand.entity';
 import { CreateBrandDto, UpdateBrandDto } from '../dtos/brand.dto';
-import { GenericService } from 'src/common/GenericService.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -10,7 +9,7 @@ import { Repository } from 'typeorm';
 export class BrandsService {
   constructor(
     @InjectRepository(Brand) private brandsRepository: Repository<Brand>,
-  ) { }
+  ) {}
 
   findAll() {
     return this.brandsRepository.find();

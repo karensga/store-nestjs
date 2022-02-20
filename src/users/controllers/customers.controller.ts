@@ -18,7 +18,7 @@ import { CustomersService } from '../services/customers.service';
 
 @Controller('customers')
 export class CustomersController {
-  constructor(private customersService: CustomersService) { }
+  constructor(private customersService: CustomersService) {}
 
   @Get()
   findAll(@Query() params: FilterCustomerDto) {

@@ -19,7 +19,7 @@ export class ProductsService {
     private brandRepository: Repository<Brand>,
     @InjectRepository(Category)
     private categoryRepository: Repository<Category>,
-  ) { }
+  ) {}
 
   findAll(params?: FilterProductDto) {
     if (params) {
