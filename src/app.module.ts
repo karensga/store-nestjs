@@ -20,7 +20,7 @@ import config from './config';
       validationSchema: Joi.object({
         API_KEY: Joi.number().required(),
         DATABASE_URL: Joi.string().required(),
-        JWT_SECRET: Joi.number().required(),
+        JWT_SECRET: Joi.string().required(),
       }),
     }),
     ProductsModule,
